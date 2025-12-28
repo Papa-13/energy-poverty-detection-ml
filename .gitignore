@@ -1,0 +1,21 @@
+# Ignore large data files
+*.xlsx
+*.csv
+*.parquet
+*.h5
+
+# Ignore model files
+*.pkl
+*.joblib
+
+# Ignore Jupyter checkpoints
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# Ignore Python cache
+__pycache__/
+*.pyc
+
+# Ignore environment
+.env
+venv/

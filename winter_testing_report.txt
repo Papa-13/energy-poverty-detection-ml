@@ -1,0 +1,81 @@
+
+WINTER-SPECIFIC TESTING REPORT
+Energy Poverty Detection Using Smart Meter Data
+======================================================================
+
+OBJECTIVE 5: Test models specifically on winter data when energy poverty
+             is most severe and health risks are greatest.
+
+======================================================================
+1. WINTER DATA SUMMARY
+======================================================================
+
+Analysis Period: December, January, February
+Total Households: 5,547
+Energy-Poor Households: 1,090 (19.65%)
+
+======================================================================
+2. MODEL PERFORMANCE ON WINTER DATA
+======================================================================
+
+
+Logistic Regression:
+  Accuracy:  0.9727
+  Precision: 0.9133
+  RECALL:    0.9704 ⭐
+  F1-Score:  0.9409
+  ROC-AUC:   0.9962
+
+Random Forest:
+  Accuracy:  0.9977
+  Precision: 0.9912
+  RECALL:    0.9984 ⭐
+  F1-Score:  0.9948
+  ROC-AUC:   1.0000
+
+XGBoost:
+  Accuracy:  0.9995
+  Precision: 0.9984
+  RECALL:    0.9992 ⭐
+  F1-Score:  0.9988
+  ROC-AUC:   1.0000
+
+LightGBM:
+  Accuracy:  0.9996
+  Precision: 0.9992
+  RECALL:    0.9992 ⭐
+  F1-Score:  0.9992
+  ROC-AUC:   1.0000
+
+
+======================================================================
+3. KEY FINDINGS
+======================================================================
+
+⭐ BEST MODEL FOR WINTER: XGBoost
+   Winter Recall: 0.9992
+   Detects 99.9% of energy-poor households in winter
+
+CRITICAL INSIGHT:
+Winter performance is the TRUE test of model utility, as this is when:
+- Energy poverty has the most severe health impacts
+- Vulnerable households need immediate support
+- Early intervention can prevent crisis situations
+
+======================================================================
+4. POLICY RECOMMENDATIONS
+======================================================================
+
+1. Deploy XGBoost for winter monitoring
+2. Increase monitoring frequency during winter months (Dec-Feb)
+3. Pre-emptive outreach before winter begins
+4. Focus on evening/night consumption patterns (heating indicators)
+5. Immediate welfare checks for self-disconnection events
+
+======================================================================
+OBJECTIVE 5 STATUS: COMPLETE ✓
+======================================================================
+
+Winter testing confirms model performance during the critical period
+when energy poverty has the most severe consequences for vulnerable
+households.

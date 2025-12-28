@@ -1,0 +1,13 @@
+{
+    "comparison_summary": "            model_name  accuracy  precision  recall  f1_score  roc_auc  \\\n0  Logistic Regression    0.9766     0.9375  0.9600    0.9486   0.9940   \n1        Random Forest    0.9910     0.9688  0.9920    0.9802   0.9998   \n2              XGBoost    0.9973     0.9920  0.9960    0.9940   0.9999   \n3             LightGBM    0.9982     0.9960  0.9960    0.9960   0.9999   \n\n   true_positives  false_negatives  false_positives  true_negatives  \n0             240               10               16             846  \n1             248                2                8             854  \n2             249                1                2             860  \n3             249                1                1             861  ",
+    "training_samples": 6900,
+    "test_samples": 1112,
+    "n_features": 92,
+    "class_balance_after_smote": {
+        "0": 3450,
+        "1": 3450
+    },
+    "best_model": "XGBoost",
+    "best_recall": 0.996,
+    "timestamp": "2025-12-04 13:06:14"
+}

@@ -1,0 +1,52 @@
+
+SHAP INTERPRETABILITY ANALYSIS - POLICY REPORT
+Energy Poverty Detection Using Smart Meter Data
+======================================================================
+
+MODEL: Random Forest
+ANALYSIS DATE: 2025-12-04 21:52:34
+SAMPLE SIZE: 1,000 households
+
+======================================================================
+1. TOP 5 MOST IMPORTANT FEATURES
+======================================================================
+
+1. quintile_1                               (Importance: 0.0586)
+2. winter_avg_consumption                   (Importance: 0.0481)
+3. mean_consumption                         (Importance: 0.0453)
+4. winter_avg                               (Importance: 0.0393)
+5. q75_consumption                          (Importance: 0.0282)
+
+
+======================================================================
+2. ACTIONABLE POLICY INSIGHTS
+======================================================================
+
+Based on SHAP analysis, the following patterns are strongest indicators
+of energy poverty:
+
+✓ MONITORING PRIORITIES:
+  - Focus automated monitoring systems on the top 5 features above
+  - These patterns should trigger immediate welfare checks
+  
+✓ INTERVENTION THRESHOLDS:
+  - Alert when households exceed vulnerability thresholds
+  - See policy_thresholds.csv for specific values
+  
+✓ TARGETED SUPPORT:
+  - Households showing multiple vulnerability indicators need priority support
+  - Early intervention before crisis point is critical
+
+======================================================================
+3. NEXT STEPS FOR POLICYMAKERS
+======================================================================
+
+1. Implement automated monitoring for top vulnerability indicators
+2. Set up alert system using recommended thresholds
+3. Develop intervention protocols for flagged households
+4. Monitor effectiveness and refine thresholds over time
+5. Conduct pilot program in high-risk areas
+
+======================================================================
+REPORT END
+======================================================================

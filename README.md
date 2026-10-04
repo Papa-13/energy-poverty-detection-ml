@@ -360,6 +360,21 @@ Interested in this research or potential collaboration?
 
 ---
 
+##  Reproducibility Materials
+
+The [`reproducibility/`](reproducibility/) directory contains a clean,
+standalone companion to the exploratory notebooks above: a pinned
+environment lock file, importable label-construction and
+feature-generation code, annual and winter training/evaluation scripts
+(with fixed random seeds and the bootstrap-CI procedure used throughout
+the paper), the independently re-derived winter-only experiment, all
+SHAP figure-generation scripts, model cards for the primary and
+secondary models, and the underlying data sample itself. See
+[`reproducibility/README.md`](reproducibility/README.md) for the full
+structure and end-to-end run instructions.
+
+---
+
 ##  Star This Repository
 
 If you find this work useful for your research or interested in energy poverty detection, please consider starring the repository!

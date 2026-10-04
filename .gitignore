@@ -4,6 +4,11 @@
 *.parquet
 *.h5
 
+# Exception: the reproducibility data sample is intentionally committed
+# (see reproducibility/README.md -- the original sampling seed was lost,
+# so this sample is the only way downstream results stay reproducible).
+!reproducibility/data/*.csv
+
 # Ignore model files
 *.pkl
 *.joblib

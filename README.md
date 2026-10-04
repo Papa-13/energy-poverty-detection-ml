@@ -61,9 +61,9 @@ Energy poverty affects health, wellbeing, and climate goals:
 ### 01_energy_data_cleaning_eda.ipynb
 **Data Cleaning & Exploratory Data Analysis**
 
-- Load and validate 167M smart meter observations
+- Load and validate the ~500,000-reading analysis sample (drawn from the 167M-reading dataset)
 - Handle missing values using gap-length-based strategy
-- Analyze consumption patterns across ACORN demographic groups
+- Analyze consumption patterns across households
 - Identify outliers and data quality issues
 - Prepare clean dataset for feature engineering
 
@@ -76,7 +76,7 @@ Energy poverty affects health, wellbeing, and climate goals:
 - **Behavioral (18 features)**: Peak ratios, night consumption, load factors
 - **Advanced (12+ features)**: Rolling statistics, trends, seasonality
 
-### 03_model_training.ipynb
+### 03_model_training.ipynb *(exploratory; see Methodology note)*
 **Multi-Model Training & Evaluation**
 
 Models trained and compared:
@@ -107,7 +107,7 @@ Models trained and compared:
 4. Coefficient of variation
 5. Peak-to-average ratio
 
-### 05_winter_testing.ipynb
+### 05_winter_testing.ipynb *(early in-sample exploration; see reproducibility/winter/)*
 **Temporal Validation & Seasonal Robustness**
 
 - Test model on winter 2013-2014 data
@@ -118,7 +118,7 @@ Models trained and compared:
 ---
 
 ##  Key Results
-## Methodology note
+### Methodology note
 
 - **Label.** There is no official fuel-poverty ground truth for these households. The target is a
   consumption-based *vulnerability proxy* (households meeting 2+ of 5 consumption-based criteria),
@@ -145,7 +145,7 @@ Classification Metrics:
 
 ### What This Means
 
-**For every 1,000 households:**
+**Illustrative example, for every 1,000 households (30% prevalence assumed for illustration; the sample prevalence is lower):**
 - 300 are energy-poor (30% prevalence)
   - ✅ 263 correctly identified (87.8% recall)
   - ❌ 37 missed (12.2% false negative rate)
@@ -201,7 +201,7 @@ xlrd>=2.0.0            # Reading Excel files
 
 ```bash
 # Clone repository
-git clone https://github.com/Pehrry/energy-poverty-detection-ml.git
+git clone https://github.com/Papa-13/energy-poverty-detection-ml.git
 cd energy-poverty-detection-ml
 
 # Create virtual environment (recommended)
@@ -297,7 +297,7 @@ Applied Artificial Intelligence and Data Science
 Southampton Solent University  
 December 2025
 
-**Supervisor**: [Supervisor Name]
+**Supervisor**: Dr Hamidreza Soltani
 
 ### Research Contribution
 
@@ -359,8 +359,8 @@ For data usage, please refer to the [Low Carbon London dataset license](https://
 
 Interested in this research or potential collaboration? 
 
-- Open an [Issue](https://github.com/Pehrry/energy-poverty-detection-ml/issues)
-- Submit a [Pull Request](https://github.com/Pehrry/energy-poverty-detection-ml/pulls)
+- Open an [Issue](https://github.com/Papa-13/energy-poverty-detection-ml/issues)
+- Submit a [Pull Request](https://github.com/Papa-13/energy-poverty-detection-ml/pulls)
 - Reach out via [email](mailto:your.email@example.com)
 
 ---
@@ -370,7 +370,7 @@ Interested in this research or potential collaboration?
 - **Notebooks**: 5 comprehensive Jupyter notebooks
 - **Features Engineered**: 90+ predictive features
 - **Lines of Code**: ~3,500 (across all notebooks)
-- **Data Processed**: 167 million observations
+- **Data Processed**: ~500,000-reading sample of the 167-million-reading dataset
 - **Model Performance**: 87.8% recall, 86.2% accuracy
 
 ---

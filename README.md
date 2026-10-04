@@ -25,13 +25,14 @@ This research demonstrates how **smart meter analytics** can provide:
 
 ##  Dataset
 
-**Low Carbon London Smart Meter Trial (2011-2014)**
+**Low Carbon London Smart Meter Trial (2011-2014), UK Power Networks**
 
-- **Observations**: 167,932,058 half-hourly electricity readings
-- **Households**: 5,567 London residences
-- **Variables**: Consumption (kWh), timestamps, ACORN demographic classifications
-- **Period**: 4 years of continuous monitoring
-- **Source**: [UK Power Networks](https://data.london.gov.uk/dataset/smartmeter-energy-use-data-in-london-households)
+- Full dataset: ~167 million half-hourly electricity readings, ~5,567 London households
+- Analysis sample: ~500,000 readings covering 5,560 households, drawn from the full dataset.
+  The original sampling seed was not retained, so the sampling step cannot be re-run;
+  the sampled data is included in reproducibility/data/ so every downstream result is reproducible.
+- Variables used: consumption (kWh) and timestamps. ACORN demographic classifications were not
+  available in the sample; the five ACORN-named features are consumption-derived placeholders.
 
 ---
 
@@ -117,6 +118,20 @@ Models trained and compared:
 ---
 
 ##  Key Results
+## Methodology note
+
+- **Label.** There is no official fuel-poverty ground truth for these households. The target is a
+  consumption-based *vulnerability proxy* (households meeting 2+ of 5 consumption-based criteria),
+  not a validated measure of energy poverty.
+- **Label leakage and correction.** In the original exploratory notebooks (03, 05) the features that
+  define the label were also model inputs, which inflates scores (recall ~99.6%, AUC ~0.9999). The
+  reported results use a three-tier feature-set comparison (Tier 1: all 92 features; Tier 2: label-rule
+  features removed; Tier 3: 33 least-contaminated features). The headline figures in this README are the
+  leakage-corrected primary result.
+- **Winter testing.** Notebook 05 is an early, in-sample exploration. The valid winter-only experiment
+  (SMOTE inside CV folds) is in reproducibility/winter/.
+- **Where to find the reported results:** reproducibility/ (pinned environment, scripts, model cards,
+  bootstrap confidence intervals).
 
 ### Model Performance (XGBoost)
 

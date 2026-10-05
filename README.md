@@ -1,7 +1,7 @@
 # Machine Learning for Energy Poverty Detection Using Smart Meter Consumption Patterns
 
 
- **Using machine learning to identify energy-poor households through privacy-preserving analysis of 167 million smart meter observations from the Low Carbon London dataset. Achieved 87.8% recall with XGBoost classifier.**
+ **Using machine learning to identify energy-poor households through privacy-preserving analysis of 167 million smart meter observations from the Low Carbon London dataset. XGBoost reached 94% recall and 92% precision on the leakage-corrected (Tier 3) feature set.**
 
 ---
 
@@ -19,7 +19,7 @@ This research demonstrates how **smart meter analytics** can provide:
 ✅ **Privacy-preserving detection** - No income data required  
 ✅ **Scalable identification** - Process millions of households  
 ✅ **Timely insights** - Near real-time detection capability  
-✅ **High recall** - 87.8% of energy-poor households identified  
+✅ **High recall** - 94% of energy-poor households in the held-out test set identified (Tier 3, leakage-corrected)  
 
 ---
 
@@ -82,7 +82,7 @@ Energy poverty affects health, wellbeing, and climate goals:
 Models trained and compared:
 - Logistic Regression (baseline)
 - Random Forest
-- **XGBoost** (selected - 87.8% recall)
+- **XGBoost** (selected - best F1 and PR-AUC on the Tier 3 leakage-corrected comparison)
 - LightGBM
 
 **Key Approaches:**
@@ -133,25 +133,26 @@ Models trained and compared:
 - **Where to find the reported results:** reproducibility/ (pinned environment, scripts, model cards,
   bootstrap confidence intervals).
 
-### Model Performance (XGBoost)
+### Model Performance (XGBoost, Tier 3, leakage-corrected, held-out test set)
 
 ```
-Classification Metrics:
-├── Recall:      87.8%  ← Successfully identifies energy-poor households
-├── Precision:   81.3%  ← Among flagged households, 81.3% are truly poor
-├── Accuracy:    86.2%  ← Overall classification performance
-└── ROC-AUC:     0.912  ← Strong discrimination capability
+Recall:      94.0%  [95% CI 90.9-96.8]
+Precision:   92.2%  [95% CI 88.6-95.4]
+F1:          0.931
+PR-AUC:      0.988
+ROC-AUC:     0.996
 ```
+
+Tier 1 (all features) scores higher (recall up to 99.2%) but is inflated by label leakage; see the Methodology note. Figures are against a consumption-based vulnerability proxy, not official fuel-poverty status. Full tables: manuscript Tables 2-4.
 
 ### What This Means
 
-**Illustrative example, for every 1,000 households (30% prevalence assumed for illustration; the sample prevalence is lower):**
-- 300 are energy-poor (30% prevalence)
-  - ✅ 263 correctly identified (87.8% recall)
-  - ❌ 37 missed (12.2% false negative rate)
-- 700 are not energy-poor
-  - ✅ 586 correctly identified
-  - ⚠️ 114 incorrectly flagged (16.3% false positive rate)
+On the held-out test set (about 1,100 households):
+- About 250 are labelled energy-vulnerable by the proxy
+  - ✅ 235 correctly identified (94.0% recall)
+  - ❌ 15 missed
+- About 860 are not labelled vulnerable
+  - ⚠️ 20 incorrectly flagged
 
 ### Ethical Considerations
 
@@ -248,7 +249,7 @@ Features designed to capture energy poverty indicators:
 ### Model Selection Rationale
 
 **XGBoost chosen because:**
-- Highest recall (87.8%) among tested models
+- Best F1 (0.931) and PR-AUC (0.988) on the Tier 3 leakage-corrected feature set
 - Built-in handling of missing values
 - Provides feature importance metrics
 - Computationally efficient at scale
@@ -371,7 +372,7 @@ Interested in this research or potential collaboration?
 - **Features Engineered**: 90+ predictive features
 - **Lines of Code**: ~3,500 (across all notebooks)
 - **Data Processed**: ~500,000-reading sample of the 167-million-reading dataset
-- **Model Performance**: 87.8% recall, 86.2% accuracy
+- **Model Performance**: 94.0% recall, 92.2% precision (Tier 3, leakage-corrected)
 
 ---
 

@@ -117,6 +117,8 @@ Machine Learning for Energy Poverty Detection Using Smart Meter Consumption Patt
 # =============================================================================
 # HOME PAGE
 # =============================================================================
+st.warning("Some pages show the original exploratory results, which are inflated by label leakage (the features that define the proxy label were also model inputs). The validated headline result is XGBoost, Tier 3: 94.0% recall, 92.2% precision. See the README Methodology note.")
+
 if page == "🏠 Home":
     st.markdown('<p class="main-header">⚡ Energy Poverty Detection Dashboard</p>', unsafe_allow_html=True)
     st.markdown('<p class="sub-header">Machine Learning for Smart Meter Consumption Pattern Analysis</p>', unsafe_allow_html=True)
@@ -127,15 +129,15 @@ if page == "🏠 Home":
     with col1:
         st.metric(
             label="Best Model Recall",
-            value="99.6%",
-            delta="XGBoost"
+            value="94.0%",
+            delta="XGBoost, Tier 3 (leakage-corrected)"
         )
     
     with col2:
         st.metric(
             label="Precision",
-            value="99.2%",
-            delta="High accuracy"
+            value="92.2%",
+            delta="Tier 3 (leakage-corrected)"
         )
     
     with col3:
@@ -166,14 +168,14 @@ if page == "🏠 Home":
         **Key Objectives:**
         1. ✅ Train and compare multiple ML models (Logistic Regression, Random Forest, XGBoost, LightGBM)
         2. ✅ Engineer comprehensive features capturing vulnerability indicators (102 features)
-        3. ✅ Prioritize recall to minimize missed vulnerable households (99.6% achieved)
+        3. ✅ Prioritize recall to minimize missed vulnerable households (94.0% recall on the leakage-corrected Tier 3 feature set)
         4. ✅ Employ SHAP for model interpretability and threshold derivation
         5. ✅ Evaluate winter-specific performance for critical cold months
         
         **Major Findings:**
-        - **XGBoost achieved 99.6% recall**, correctly identifying 249 of 250 vulnerable households
-        - **Self-disconnection ratio > 0.10** emerged as strongest vulnerability indicator
-        - **Performance maintained during winter months** (99.6% recall in Dec-Feb)
+        - **XGBoost achieved 94.0% recall and 92.2% precision** on the leakage-corrected (Tier 3) feature set. The original 99.6% figure reflected label leakage and should not be cited
+        - **Self-disconnection ratio** was a strong indicator, but it is part of the proxy label definition, so this is partly circular
+        - **Winter-only experiment** (exploratory, Winter Tier 3, XGBoost): 97.2% recall; see the manuscript
         - **Behavioral patterns outperformed simple consumption levels** for detection
         """)
     
@@ -210,7 +212,7 @@ if page == "🏠 Home":
     with tab2:
         st.markdown("""
         **Empirical Contributions:**
-        - Achieved 99.6% recall - strongest evidence to date for consumption-based vulnerability detection
+        - Reached 94.0% recall on the leakage-corrected feature set, against a consumption-based proxy label rather than official fuel-poverty status
         - Quantified behavioral thresholds: self-disconnect > 0.10, consumption < 2.0 kWh/day
         - Validated seasonal robustness with maintained winter performance
         - Identified interaction effects between consumption level and behavioral patterns
@@ -999,44 +1001,7 @@ elif page == "❄️ Winter Analysis":
         
         st.markdown("---")
         
-        # Monthly stability
-        st.markdown("### 📅 Monthly Performance Stability")
-        
-        monthly_data = pd.DataFrame({
-            'Month': ['December', 'January', 'February', 'Combined Winter'],
-            'Recall': [0.992, 0.996, 0.996, 0.996],
-            'Households Identified': [246, 249, 249, 249],
-            'Total Vulnerable': [250, 250, 250, 250]
-        })
-        
-        fig = go.Figure()
-        
-        fig.add_trace(go.Bar(
-            x=monthly_data['Month'],
-            y=monthly_data['Recall'],
-            text=monthly_data['Recall'].apply(lambda x: f'{x:.1%}'),
-            textposition='auto',
-            marker=dict(color=['lightblue', 'blue', 'blue', 'darkblue'])
-        ))
-        
-        fig.update_layout(
-            title="XGBoost Recall by Winter Month",
-            yaxis_title="Recall",
-            yaxis=dict(range=[0.98, 1.0]),
-            height=400
-        )
-        
-        st.plotly_chart(fig, use_container_width=True)
-        
-        st.markdown("""
-        **Monthly Analysis:**
-        - **December**: 99.2% recall (slightly lower due to holiday atypical patterns)
-        - **January**: 99.6% recall (peak performance)
-        - **February**: 99.6% recall (maintained)
-        - **Combined**: 99.6% recall (no dilution from aggregation)
-        
-        ✅ Consistent performance across all winter months validates genuine behavioral patterns
-        """)
+        st.info("Month-by-month winter recall figures (99.2-99.6%) were removed: they came from an early in-sample test affected by label leakage. See the manuscript and reproducibility/winter/ for the valid winter-only experiment.")
 
 # =============================================================================
 # LIVE PREDICTION
@@ -1496,13 +1461,13 @@ elif page == "📋 Policy Recommendations":
     metrics_data = {
         'Category': ['Technical Performance', 'Operational Efficiency', 'Social Impact', 'Ethical Compliance'],
         'Metrics': [
-            'Model recall >95%; Precision >90%; No performance degradation over time',
+            'Model recall >90%; Precision >90%; No performance degradation over time',
             'Coverage >80% customer base; Assessment completion >70%; Response time <1 week',
             'Support uptake >60% of flagged; Reported improvement >50%; Excess winter deaths trend',
             'Zero bias incidents; 100% GDPR compliance; Transparent reporting quarterly'
         ],
         'Targets': [
-            '99% recall maintained; Monthly model monitoring',
+            'Recall maintained at or above the validated level; Monthly model monitoring',
             '90% coverage within 12 months; 3-5 day response',
             '70% support connection; Annual impact study',
             'Ongoing fairness audits; Annual ethics review'
